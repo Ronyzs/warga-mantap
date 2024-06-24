@@ -26,4 +26,34 @@ class WargaModel extends Model
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
+
+    public function distinctRtValues()
+    {
+        return $this->distinctValues('rt');
+    }
+
+    public function distinctRwValues()
+    {
+        return $this->distinctValues('rw');
+    }
+
+    public function filterByRtRw($rt, $rw)
+    {
+        $builder = $this->builder();
+
+        if ($rt != '') {
+            $builder->where('rt', $rt);
+        }
+
+        if ($rw != '') {
+            $builder->where('rw', $rw);
+        }
+
+        return $builder->get()->getResultArray();
+    }
+
+    protected function distinctValues($column)
+    {
+        return $this->distinct()->select($column)->get()->getResultArray();
+    }
 }

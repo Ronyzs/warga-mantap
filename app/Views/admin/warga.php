@@ -34,6 +34,32 @@
         </a>
       </div>
       <div class="card-body">
+        <!-- Filters -->
+        <div class="mb-3">
+          <label for="filter_rt" class="form-label">Filter by RT:</label>
+          <select id="filter_rt" class="form-select filter_rt">
+            <option value="">All</option>
+            <?php foreach ($rts as $rt) : ?>
+              <option value="<?= $rt ?>"><?= $rt ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="filter_rw" class="form-label">Filter by RW:</label>
+          <select id="filter_rw" class="form-select filter_rw">
+            <option value="">All</option>
+            <?php foreach ($rws as $rw) : ?>
+              <option value="<?= $rw ?>"><?= $rw ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+
+        <button class="btn btn-secondary px-3" id="clearFilter">
+          Hapus Filter
+        </button>
+
+        <!-- Table -->
         <table class="table table-striped" id="table1">
           <thead>
             <tr>
@@ -63,10 +89,10 @@
                 <td><?= $w['timses'] ?></td>
                 <td>
                   <!-- <a href="/admin/warga/update/<?= $w['id'] ?>">
-                    <button class="btn btn-sm btn-warning">
-                      Update
-                    </button>
-                  </a> -->
+                                        <button class="btn btn-sm btn-warning">
+                                            Update
+                                        </button>
+                                    </a> -->
                   <a href="/admin/warga/delete/<?= $w['id'] ?>">
                     <button class="btn btn-sm btn-danger ml-2">
                       Delete
@@ -89,9 +115,52 @@
 
 <?= $this->section('javascript') ?>
 <script src="/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <script>
-  // Simple Datatable
-  let table1 = document.querySelector('#table1');
-  let dataTable = new simpleDatatables.DataTable(table1);
+  $(document).ready(function() {
+    // Initialize DataTable
+    var table = $('#table1').DataTable();
+
+    select2config('filter_rt', 'Pilih RT', '', '', (e) => table.columns(5).search(e.params.data.id).draw());
+    select2config('filter_rw', 'Pilih RW', '', '', (e) => table.columns(6).search(e.params.data.id).draw());
+
+    $('#clearFilter').click(function(e) {
+      e.preventDefault();
+      $(".filter_rw").val(null).trigger('change');
+      $(".filter_rt").val(null).trigger('change');
+      table.search('').columns().search('').draw();
+    });
+  });
+
+  function select2config(
+    selector,
+    placeholder = "",
+    data = "",
+    selected = "",
+    onCl = function(e) {
+      app.form.model[selector] = e.params.data.id;
+    }
+  ) {
+    if ($(`.${selector}`).data("select2")) {
+      $(`.${selector}`).select2("destroy");
+    }
+
+    if (data) {
+      $(`.${selector}`).html(data);
+    }
+
+    $(`.${selector}`)
+      .select2({
+        placeholder: placeholder ? `Pilih ${placeholder}` : `Pilih Data`,
+        width: "100%",
+      })
+      .on("select2:select", onCl);
+
+    if (selected != "") {
+      $(`.${selector}`).val(selected).trigger("change");
+    }
+  }
 </script>
 <?= $this->endSection() ?>

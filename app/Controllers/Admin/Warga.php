@@ -18,7 +18,13 @@ class Warga extends BaseController
     {
         return view('admin/warga', [
             'title'   => 'Data Warga',
-            'warga'   => $this->warga->findAll()
+            'warga'   => $this->warga->findAll(),
+            'rts' => array_map(function ($b) {
+                return $b['rt'];
+            }, $this->warga->distinctRtValues()),
+            'rws' => array_map(function ($b) {
+                return $b['rw'];
+            }, $this->warga->distinctRwValues())
         ]);
     }
 
