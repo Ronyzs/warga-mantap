@@ -25,7 +25,13 @@ $uri3 = $uri[3] ?? '';
                         <span>Dashboard</span>
                     </a>
                 </li>
-
+                <li class="sidebar-item">
+                    <a href="/logout" class='sidebar-link'>
+                        <i class="bi bi-arrow-bar-left"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+                <!-- 
                 <li class="sidebar-item <?= ($uri1 == 'product') ? 'active' : '' ?> ">
                     <a href="/user/product" class='sidebar-link'>
                         <i class="bi bi-laptop-fill"></i>
@@ -45,7 +51,7 @@ $uri3 = $uri[3] ?? '';
                         <i class="bi bi-cart-fill"></i>
                         <span>Transactions</span>
                     </a>
-                </li>
+                </li> -->
 
                 <!-- <li class="sidebar-item <?= ($uri1 == 'product') ? 'active' : '' ?> ">
                     <a href="/user/user" class='sidebar-link'>

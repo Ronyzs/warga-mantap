@@ -3,6 +3,7 @@
 namespace Config;
 
 use App\Filters\AdminFilter;
+use App\Filters\UserFilter;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -24,7 +25,8 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
-        'admin'         => AdminFilter::class
+        'admin'         => AdminFilter::class,
+        'user'          => UserFilter::class
     ];
 
     /**
@@ -70,5 +72,8 @@ class Filters extends BaseConfig
      *
      * @var array
      */
-    public $filters = [];
+    public $filters = [
+        'user' => ['before' => ['user', 'user/*']],  // Apply UserFilter to routes starting with 'user/'
+        'admin' => ['before' => ['admin', 'admin/*']], // Apply AdminFilter to routes starting with 'admin/'
+    ];
 }

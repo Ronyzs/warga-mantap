@@ -37,9 +37,10 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('/masuk', 'Auth::masuk');
-$routes->get('/daftar', 'Auth::daftar');
+// $routes->get('/daftar', 'Auth::daftar');
 $routes->post('/login', 'Auth::login');
-$routes->post('/register', 'Auth::register');
+$routes->get('/logout', 'Auth::logout');
+// $routes->post('/register', 'Auth::register');
 
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($routes) {
     $routes->get('/', 'Admin::index');
@@ -69,7 +70,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->get('(:num)', 'Transaction::detail/$1');
         $routes->get('(:num)/bayar', 'Transaction::bayar/$1');
         $routes->get('checkout', 'Transaction::checkout');
-    }); 
+    });
 });
 
 $routes->group('user', ['namespace' => 'App\Controllers\User'], function ($routes) {
@@ -85,6 +86,10 @@ $routes->group('user', ['namespace' => 'App\Controllers\User'], function ($route
         $routes->get('delete', 'Product::delete');
     });
 
+    $routes->group('product', function ($routes) {
+        $routes->get('/', 'Warga::indexUser');
+    });
+
     $routes->group('cart', function ($routes) {
         $routes->get('/', 'Cart::index');
         $routes->get('add/(:num)', 'Cart::add/$1');
@@ -96,7 +101,7 @@ $routes->group('user', ['namespace' => 'App\Controllers\User'], function ($route
         $routes->get('(:num)', 'Transaction::detail/$1');
         $routes->get('(:num)/bayar', 'Transaction::bayar/$1');
         $routes->get('checkout', 'Transaction::checkout');
-    }); 
+    });
 });
 
 $routes->group('mazer', ['namespace' => 'App\Controllers\Mazer'], function ($routes) {

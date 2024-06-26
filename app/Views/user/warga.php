@@ -1,4 +1,4 @@
-<?= $this->extend('admin/layouts/app') ?>
+<?= $this->extend('user/layouts/app') ?>
 
 <?= $this->section('content') ?>
 <div class="page-heading">
@@ -27,38 +27,8 @@
     <div class="card">
       <div class="card-header d-flex align-items-center justify-content-between">
         <h4>Data Warga</h4>
-        <a href="/admin/warga/add">
-          <button class="btn btn-primary px-3">
-            Tambah Data
-          </button>
-        </a>
       </div>
       <div class="card-body">
-        <!-- Filters -->
-        <div class="mb-3">
-          <label for="filter_rt" class="form-label">Filter by RT:</label>
-          <select id="filter_rt" class="form-select filter_rt">
-            <option value="">All</option>
-            <?php foreach ($rts as $rt) : ?>
-              <option value="<?= $rt ?>"><?= $rt ?></option>
-            <?php endforeach; ?>
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label for="filter_rw" class="form-label">Filter by RW:</label>
-          <select id="filter_rw" class="form-select filter_rw">
-            <option value="">All</option>
-            <?php foreach ($rws as $rw) : ?>
-              <option value="<?= $rw ?>"><?= $rw ?></option>
-            <?php endforeach; ?>
-          </select>
-        </div>
-
-        <button class="btn btn-secondary px-3" id="clearFilter">
-          Hapus Filter
-        </button>
-
         <!-- Table -->
         <table class="table table-striped" id="table1">
           <thead>
@@ -72,7 +42,6 @@
               <th>RW</th>
               <th>Jenis Kelamin</th>
               <th>Timses</th>
-              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -87,18 +56,6 @@
                 <td><?= $w['rw'] ?></td>
                 <td><?= $w['jenis_kelamin'] ?></td>
                 <td><?= $w['timses'] ?></td>
-                <td>
-                  <!-- <a href="/admin/warga/update/<?= $w['id'] ?>">
-                                        <button class="btn btn-sm btn-warning">
-                                            Update
-                                        </button>
-                                    </a> -->
-                  <a href="/admin/warga/delete/<?= $w['id'] ?>">
-                    <button class="btn btn-sm btn-danger ml-2">
-                      Delete
-                    </button>
-                  </a>
-                </td>
               </tr>
             <?php endforeach; ?>
           </tbody>
@@ -121,7 +78,9 @@
 <script>
   $(document).ready(function() {
     // Initialize DataTable
-    var table = $('#table1').DataTable();
+    var table = $('#table1').DataTable({
+      "pageLength": 50
+    });
 
     select2config('filter_rt', 'Pilih RT', '', '', (e) => table.columns(5).search(e.params.data.id).draw());
     select2config('filter_rw', 'Pilih RW', '', '', (e) => table.columns(6).search(e.params.data.id).draw());

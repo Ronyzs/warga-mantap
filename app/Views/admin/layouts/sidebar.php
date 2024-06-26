@@ -19,10 +19,16 @@ $uri3 = $uri[3] ?? '';
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
-                <li class="sidebar-item <?= ($uri1 == 'warga') ? 'active' : '' ?> ">
-                    <a href="/admin/warga" class='sidebar-link'>
+                <li class="sidebar-item <?= ($uri1 == 'index') ||  ($uri1 == 'warga') ? 'active' : '' ?> ">
+                    <a href="/admin" class='sidebar-link'>
                         <i class="bi bi-laptop-fill"></i>
                         <span>Data Warga</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/logout" class='sidebar-link'>
+                        <i class="bi bi-arrow-bar-left"></i>
+                        <span>Logout</span>
                     </a>
                 </li>
             </ul>

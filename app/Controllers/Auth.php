@@ -70,7 +70,6 @@ class Auth extends BaseController
       ]);
 
       if ($user['role'] == 'admin') {
-        dd('test');
         return redirect()->to('/admin');
       }
 
@@ -114,5 +113,13 @@ class Auth extends BaseController
 
     session()->setFlashdata('pesan', 'Akun Berhasil Dibuat.');
     return redirect()->to(base_url() . '/masuk');
+  }
+
+  public function logout()
+  {
+    $session = session();
+    $session->destroy(); // Destroy all session data
+
+    return redirect()->to('/masuk'); // Redirect to the login page
   }
 }
