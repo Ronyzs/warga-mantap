@@ -10,8 +10,14 @@ class AdminFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
+        // Cek session
         if (!session()->get('id')) {
             return redirect()->to('/masuk');
+        }
+
+        // Cek role
+        if (session()->get('role') != 'admin') {
+            return redirect()->to('/');
         }
     }
 

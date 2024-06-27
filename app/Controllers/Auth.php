@@ -15,6 +15,10 @@ class Auth extends BaseController
 
   public function masuk()
   {
+    if (session()->get('id')) {
+      return redirect()->to(session()->get('role'));
+    }
+
     return view('auth/login', [
       'title' => 'Login',
       'validation' => \Config\Services::validation()

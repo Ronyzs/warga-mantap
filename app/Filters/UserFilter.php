@@ -13,6 +13,11 @@ class UserFilter implements FilterInterface
         if (!session()->get('id')) {
             return redirect()->to('/masuk');
         }
+
+        // Cek role
+        if (session()->get('role') != 'user') {
+            return redirect()->to('/');
+        }
     }
 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)

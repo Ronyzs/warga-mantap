@@ -35,14 +35,14 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Auth::masuk');
 $routes->get('/masuk', 'Auth::masuk');
 // $routes->get('/daftar', 'Auth::daftar');
 $routes->post('/login', 'Auth::login');
 $routes->get('/logout', 'Auth::logout');
 // $routes->post('/register', 'Auth::register');
 
-$routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($routes) {
+$routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'admin'], function ($routes) {
     $routes->get('/', 'Admin::index');
 
     $routes->group('product', function ($routes) {
@@ -73,7 +73,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     });
 });
 
-$routes->group('user', ['namespace' => 'App\Controllers\User'], function ($routes) {
+$routes->group('user', ['namespace' => 'App\Controllers\User', 'filter' => 'user'], function ($routes) {
     $routes->get('/', 'User::index');
 
     $routes->group('product', function ($routes) {
