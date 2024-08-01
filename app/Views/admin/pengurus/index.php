@@ -5,14 +5,14 @@
   <div class="page-title">
     <div class="row">
       <div class="col-12 col-md-6 order-md-1 order-last">
-        <h3>Data Warga</h3>
-        <p class="text-subtitle text-muted">Repository of Warga</p>
+        <h3><?= $title ?></h3>
+        <p class="text-subtitle text-muted">Repository of <?= $title ?></p>
       </div>
       <div class="col-12 col-md-6 order-md-2 order-first">
         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Data Warga</li>
+            <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
           </ol>
         </nav>
       </div>
@@ -26,74 +26,39 @@
   <section class="section">
     <div class="card">
       <div class="card-header d-flex align-items-center justify-content-between">
-        <h4>Data Warga</h4>
-        <a href="/admin/warga/add">
+        <h4><?= $title ?></h4>
+        <a href="/admin/pengurus/add">
           <button class="btn btn-primary px-3">
             Tambah Data
           </button>
         </a>
       </div>
       <div class="card-body">
-        <!-- Filters -->
-        <div class="mb-3">
-          <label for="filter_rt" class="form-label">Filter by RT:</label>
-          <select id="filter_rt" class="form-select filter_rt">
-            <option value="">All</option>
-            <?php foreach ($rts as $rt) : ?>
-              <option value="<?= $rt ?>"><?= $rt ?></option>
-            <?php endforeach; ?>
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label for="filter_rw" class="form-label">Filter by RW:</label>
-          <select id="filter_rw" class="form-select filter_rw">
-            <option value="">All</option>
-            <?php foreach ($rws as $rw) : ?>
-              <option value="<?= $rw ?>"><?= $rw ?></option>
-            <?php endforeach; ?>
-          </select>
-        </div>
-
-        <button class="btn btn-secondary px-3" id="clearFilter">
-          Hapus Filter
-        </button>
-
         <!-- Table -->
         <table class="table table-striped" id="table1">
           <thead>
             <tr>
               <th>No.</th>
               <th>NIK</th>
-              <th>Nama</th>
-              <th>Alamat</th>
-              <th>No. Telp</th>
+              <th>NAMA</th>
               <th>RT</th>
-              <th>RW</th>
-              <th>Jenis Kelamin</th>
-              <th>Timses</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($warga as $key => $w) : ?>
+            <?php foreach ($pengurus as $key => $w) : ?>
               <tr>
-                <td><?= $key + 1 ?></td>
+                <td><?= $key+1 ?></td>
                 <td><?= $w['nik'] ?></td>
                 <td><?= $w['nama'] ?></td>
-                <td><?= $w['alamat'] ?></td>
-                <td><?= $w['no_telp'] ?></td>
                 <td><?= $w['rt'] ?></td>
-                <td><?= $w['rw'] ?></td>
-                <td><?= $w['jenis_kelamin'] ?></td>
-                <td><?= $w['timses'] ?></td>
                 <td>
-                  <!-- <a href="/admin/warga/update/<?= $w['id'] ?>">
-                                        <button class="btn btn-sm btn-warning">
-                                            Update
-                                        </button>
-                                    </a> -->
-                  <a href="/admin/warga/delete/<?= $w['id'] ?>">
+                  <a href="/admin/pengurus/update/<?= $w['id'] ?>">
+                    <button class="btn btn-sm btn-warning ml-2">
+                      Edit
+                    </button>
+                  </a>
+                  <a href="/admin/pengurus/delete/<?= $w['id'] ?>">
                     <button class="btn btn-sm btn-danger ml-2">
                       Delete
                     </button>

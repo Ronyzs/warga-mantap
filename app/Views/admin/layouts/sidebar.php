@@ -25,6 +25,12 @@ $uri3 = $uri[3] ?? '';
                         <span>Data Warga</span>
                     </a>
                 </li>
+                <li class="sidebar-item <?= ($uri1 == 'pengurus') ? 'active' : '' ?> ">
+                    <a href="/admin/pengurus" class='sidebar-link'>
+                        <i class="bi bi-file"></i>
+                        <span>Data Pengurus</span>
+                    </a>
+                </li>
                 <li class="sidebar-item">
                     <a href="/logout" class='sidebar-link'>
                         <i class="bi bi-arrow-bar-left"></i>

@@ -53,11 +53,8 @@ class Warga extends BaseController
     {
         if (!$this->validate([
             'nomor_induk' => [
-                'rules'  => 'required|is_unique[warga.nik]',
-                'errors' => [
-                    'is_unique' => 'NIK sudah terdaftar.',
-                    'required' => 'NIK harus diisi.'
-                ]
+                'label'  => 'NIK',
+                'rules'  => 'required|is_unique[warga.nik]|numeric',
             ],
             'nama' => [
                 'rules'  => 'required',
@@ -108,8 +105,6 @@ class Warga extends BaseController
             // dd(\Config\Services::validation()->hasError('nik'));
             return redirect()->back()->withInput();
         }
-
-
 
         $this->warga->insert([
             'nik'          => $this->request->getVar('nomor_induk'),

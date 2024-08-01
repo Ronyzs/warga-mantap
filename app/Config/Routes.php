@@ -65,6 +65,16 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'ad
         $routes->get('delete/(:num)', 'Warga::delete/$1');
     });
 
+    $routes->group('pengurus', function ($routes) {
+        $routes->get('/', 'Pengurus::index');
+        $routes->get('add', 'Pengurus::add');
+        $routes->get('update/(:num)', 'Pengurus::update/$1');
+
+        $routes->post('post', 'Pengurus::post');
+        $routes->post('put/(:num)', 'Pengurus::put/$1');
+        $routes->get('delete/(:num)', 'Pengurus::delete/$1');
+    });
+
     $routes->group('transaction', function ($routes) {
         $routes->get('/', 'Transaction::index');
         $routes->get('(:num)', 'Transaction::detail/$1');
