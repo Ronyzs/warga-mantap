@@ -27,32 +27,41 @@
     <div class="card">
       <div class="card-header d-flex align-items-center justify-content-between">
         <h4>Data Warga</h4>
-        <a href="/admin/warga/add">
-          <button class="btn btn-primary px-3">
-            Tambah Data
-          </button>
-        </a>
+        <div class="d-flex justify-content-end">
+          <a href="/admin/warga/add" class="p-2">
+            <button class="btn btn-primary px-3">
+              Tambah Data
+            </button>
+          </a>
+          <a href="/admin/warga/export" target="blank_" class="p-2">
+            <button class="btn btn-success px-3">
+              Export Excel
+            </button>
+          </a>
+        </div>
       </div>
       <div class="card-body">
-        <!-- Filters -->
-        <div class="mb-3">
-          <label for="filter_rt" class="form-label">Filter by RT:</label>
-          <select id="filter_rt" class="form-select filter_rt">
-            <option value="">All</option>
-            <?php foreach ($rts as $rt) : ?>
-              <option value="<?= $rt ?>"><?= $rt ?></option>
-            <?php endforeach; ?>
-          </select>
-        </div>
+        <div class="d-flex justify-content-around">
+          <!-- Filters -->
+          <div class="mb-3 flex-fill px-1">
+            <label for="filter_rt" class="form-label">Filter by RT:</label>
+            <select id="filter_rt" class="form-select filter_rt">
+              <option value="">All</option>
+              <?php foreach ($rts as $rt) : ?>
+                <option value="<?= $rt ?>"><?= $rt ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
 
-        <div class="mb-3">
-          <label for="filter_rw" class="form-label">Filter by RW:</label>
-          <select id="filter_rw" class="form-select filter_rw">
-            <option value="">All</option>
-            <?php foreach ($rws as $rw) : ?>
-              <option value="<?= $rw ?>"><?= $rw ?></option>
-            <?php endforeach; ?>
-          </select>
+          <div class="mb-3 flex-fill px-1">
+            <label for="filter_rw" class="form-label">Filter by RW:</label>
+            <select id="filter_rw" class="form-select filter_rw">
+              <option value="">All</option>
+              <?php foreach ($rws as $rw) : ?>
+                <option value="<?= $rw ?>"><?= $rw ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
         </div>
 
         <button class="btn btn-secondary px-3" id="clearFilter">
@@ -121,7 +130,9 @@
 <script>
   $(document).ready(function() {
     // Initialize DataTable
-    var table = $('#table1').DataTable();
+    var table = $('#table1').DataTable({
+      "pageLength": 50,
+    });
 
     select2config('filter_rt', 'Pilih RT', '', '', (e) => table.columns(5).search(e.params.data.id).draw());
     select2config('filter_rw', 'Pilih RW', '', '', (e) => table.columns(6).search(e.params.data.id).draw());

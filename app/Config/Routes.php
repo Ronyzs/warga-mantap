@@ -45,20 +45,12 @@ $routes->get('/logout', 'Auth::logout');
 $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'admin'], function ($routes) {
     $routes->get('/', 'Admin::index');
 
-    $routes->group('product', function ($routes) {
-        $routes->get('/', 'Product::index');
-        $routes->get('add', 'Product::add');
-        $routes->get('update', 'Product::update');
-
-        $routes->post('post', 'Product::post');
-        $routes->post('put', 'Product::put');
-        $routes->get('delete', 'Product::delete');
-    });
-
     $routes->group('warga', function ($routes) {
         $routes->get('/', 'Warga::index');
         $routes->get('add', 'Warga::add');
         $routes->get('update', 'Warga::update');
+        $routes->get('export', 'Warga::exportExcel');
+        $routes->get('get-pengurus/(:num)', 'Warga::getPengurusById/$1');
 
         $routes->post('post', 'Warga::post');
         $routes->post('put', 'Warga::put');
@@ -73,13 +65,6 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'ad
         $routes->post('post', 'Pengurus::post');
         $routes->post('put/(:num)', 'Pengurus::put/$1');
         $routes->get('delete/(:num)', 'Pengurus::delete/$1');
-    });
-
-    $routes->group('transaction', function ($routes) {
-        $routes->get('/', 'Transaction::index');
-        $routes->get('(:num)', 'Transaction::detail/$1');
-        $routes->get('(:num)/bayar', 'Transaction::bayar/$1');
-        $routes->get('checkout', 'Transaction::checkout');
     });
 });
 

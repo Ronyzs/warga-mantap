@@ -48,7 +48,7 @@
           <tbody>
             <?php foreach ($pengurus as $key => $w) : ?>
               <tr>
-                <td><?= $key+1 ?></td>
+                <td><?= $key + 1 ?></td>
                 <td><?= $w['nik'] ?></td>
                 <td><?= $w['nama'] ?></td>
                 <td><?= $w['rt'] ?></td>
@@ -86,7 +86,9 @@
 <script>
   $(document).ready(function() {
     // Initialize DataTable
-    var table = $('#table1').DataTable();
+    var table = $('#table1').DataTable({
+      "pageLength": 50
+    });
 
     select2config('filter_rt', 'Pilih RT', '', '', (e) => table.columns(5).search(e.params.data.id).draw());
     select2config('filter_rw', 'Pilih RW', '', '', (e) => table.columns(6).search(e.params.data.id).draw());

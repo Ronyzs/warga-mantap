@@ -24,4 +24,15 @@ class PengurusModel extends Model
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
+
+    function getListPengurus()
+    {
+        $data = [];
+
+        foreach ($this->findAll() as $key => $value) {
+            $data[$value['id']] = $value['nama'] . " - RT. " . $value['rt'];
+        }
+
+        return $data;
+    }
 }

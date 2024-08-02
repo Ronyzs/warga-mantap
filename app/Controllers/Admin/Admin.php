@@ -15,7 +15,7 @@ class Admin extends BaseController
   }
   public function index()
   {
-    return view('admin/warga', [
+    return view('admin/warga/index', [
       'title'   => 'Data Warga',
       'warga'   => $this->warga->findAll(),
       'rts' => array_map(function ($b) {

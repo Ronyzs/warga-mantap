@@ -45,6 +45,28 @@
               </div>
               <!-- DONT TOUCH -->
 
+              <!-- Timses -->
+              <div class="col-12">
+                <div class="form-group row align-items-center">
+                  <div class="col-lg-2 col-3">
+                    <label for="timses" class="col-form-label">Pengurus</label>
+                  </div>
+                  <div class="col-lg-10 col-9">
+                    <?= form_dropdown(
+                      'timses',
+                      $pengurus,
+                      '',
+                      ['class' => 'form-control select2 select2-timses' . ($validation->hasError('timses') ? 'is-invalid' : ''), 'id' => 'select2-form-timses']
+                    ); ?>
+                    <?php if ($validation->hasError('timses')) : ?>
+                      <div class="invalid-feedback">
+                        <?= $validation->getError('timses') ?>
+                      </div>
+                    <?php endif; ?>
+                  </div>
+                </div>
+              </div>
+
               <!-- Nama -->
               <div class="col-12">
                 <div class="form-group row align-items-center">
@@ -69,7 +91,7 @@
                     <label for="nomor_induk" class="col-form-label">NIK</label>
                   </div>
                   <div class="col-lg-10 col-9">
-                    <input name="nomor_induk" type="text" class="form-control <?= $validation->hasError('nomor_induk') ? 'is-invalid' : '' ?>" id="nomor_induk" value="<?= old('nomor_induk') ?>" required>
+                    <input name="nomor_induk" type="text" class="form-control <?= $validation->hasError('nomor_induk') ? 'is-invalid' : '' ?>" id="nomor_induk" value="<?= old('nomor_induk') ?>">
                     <?php if ($validation->hasError('nomor_induk')) : ?>
                       <div class="invalid-feedback">
                         <?= $validation->getError('nomor_induk') ?>
@@ -86,7 +108,7 @@
                     <label for="alamat" class="col-form-label">Alamat</label>
                   </div>
                   <div class="col-lg-10 col-9">
-                    <input name="alamat" type="text" class="form-control <?= ($validation->hasError('alamat')) ? 'is-invalid' : '' ?>" id="alamat" value="<?= old('alamat') ?>" required>
+                    <input name="alamat" type="text" class="form-control <?= ($validation->hasError('alamat')) ? 'is-invalid' : '' ?>" id="alamat" value="<?= old('alamat') ?>">
                     <?php if ($validation->hasError('alamat')) : ?>
                       <div class="invalid-feedback">
                         <?= $validation->getError('alamat') ?>
@@ -103,7 +125,7 @@
                     <label for="no_telp" class="col-form-label">No. Telp</label>
                   </div>
                   <div class="col-lg-10 col-9">
-                    <input name="no_telp" type="text" class="form-control <?= ($validation->hasError('no_telp')) ? 'is-invalid' : '' ?>" id="no_telp" value="<?= old('no_telp') ?>" required>
+                    <input name="no_telp" type="text" class="form-control <?= ($validation->hasError('no_telp')) ? 'is-invalid' : '' ?>" id="no_telp" value="<?= old('no_telp') ?>">
                     <?php if ($validation->hasError('no_telp')) : ?>
                       <div class="invalid-feedback">
                         <?= $validation->getError('no_telp') ?>
@@ -120,7 +142,7 @@
                     <label for="rt" class="col-form-label">RT</label>
                   </div>
                   <div class="col-lg-10 col-9">
-                    <input name="rt" type="text" class="form-control <?= ($validation->hasError('rt')) ? 'is-invalid' : '' ?>" id="rt" value="<?= old('rt') ?>" required>
+                    <input name="rt" type="text" class="form-control <?= ($validation->hasError('rt')) ? 'is-invalid' : '' ?>" id="rt" value="<?= old('rt') ?>" readonly>
                     <?php if ($validation->hasError('rt')) : ?>
                       <div class="invalid-feedback">
                         <?= $validation->getError('rt') ?>
@@ -137,7 +159,7 @@
                     <label for="rw" class="col-form-label">RW</label>
                   </div>
                   <div class="col-lg-10 col-9">
-                    <input name="rw" type="text" class="form-control <?= ($validation->hasError('rw')) ? 'is-invalid' : '' ?>" id="rw" value="<?= old('rw') ?>" required>
+                    <input name="rw" type="text" class="form-control <?= ($validation->hasError('rw')) ? 'is-invalid' : '' ?>" id="rw" value="<?= old('rw') ?>">
                     <?php if ($validation->hasError('rw')) : ?>
                       <div class="invalid-feedback">
                         <?= $validation->getError('rw') ?>
@@ -154,7 +176,7 @@
                     <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin</label>
                   </div>
                   <div class="col-lg-10 col-9">
-                    <select name="jenis_kelamin" class="form-select <?= ($validation->hasError('jenis_kelamin')) ? 'is-invalid' : '' ?>" id="jenis_kelamin" required>
+                    <select name="jenis_kelamin" class="form-select <?= ($validation->hasError('jenis_kelamin')) ? 'is-invalid' : '' ?>" id="jenis_kelamin">
                       <option value="">Pilih Jenis Kelamin</option>
                       <option value="Pria" <?= (old('jenis_kelamin') == 'Pria') ? 'selected' : '' ?>>Pria</option>
                       <option value="Wanita" <?= (old('jenis_kelamin') == 'Wanita') ? 'selected' : '' ?>>Wanita</option>
@@ -162,23 +184,6 @@
                     <?php if ($validation->hasError('jenis_kelamin')) : ?>
                       <div class="invalid-feedback">
                         <?= $validation->getError('jenis_kelamin') ?>
-                      </div>
-                    <?php endif; ?>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Timses -->
-              <div class="col-12">
-                <div class="form-group row align-items-center">
-                  <div class="col-lg-2 col-3">
-                    <label for="timses" class="col-form-label">Timses</label>
-                  </div>
-                  <div class="col-lg-10 col-9">
-                    <input name="timses" type="text" class="form-control <?= ($validation->hasError('timses')) ? 'is-invalid' : '' ?>" id="timses" value="<?= old('timses') ?>" required>
-                    <?php if ($validation->hasError('timses')) : ?>
-                      <div class="invalid-feedback">
-                        <?= $validation->getError('timses') ?>
                       </div>
                     <?php endif; ?>
                   </div>
@@ -201,4 +206,62 @@
   <!-- validations end -->
 
 </div>
+<?= $this->endSection() ?>
+
+
+<?= $this->section('javascript') ?>
+<script src="/assets/vendors/simple-datatables/simple-datatables.js"></script>
+<script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    // Initialize Select2 with the old selected value
+    select2config('select2-timses', 'Pengurus', '', '<?= old('timses') ?>', (e) => {
+      blockUI(true);
+
+      $.ajax({
+        type: "GET",
+        url: `get-pengurus/${e.params.data.id}`,
+        success: function(res) {
+          $('#rt').val(res.rt).trigger('change');
+        },
+      }).fail(function(xhr) {}).always(function() {
+        blockUI(false);
+      });;
+    });
+
+    // Ensure Select2 shows the old selected value after validation
+    $('.select2-timses').val('<?= old('timses') ?>').trigger('change');
+  });
+
+  function select2config(
+    selector,
+    placeholder = "",
+    data = "",
+    selected = "",
+    onCl = function(e) {
+      app.form.model[selector] = e.params.data.id;
+    }
+  ) {
+    if ($(`.${selector}`).data("select2")) {
+      $(`.${selector}`).select2("destroy");
+    }
+
+    if (data) {
+      $(`.${selector}`).html(data);
+    }
+
+    $(`.${selector}`)
+      .select2({
+        placeholder: placeholder ? `Pilih ${placeholder}` : `Pilih Data`,
+        width: "100%",
+      })
+      .on("select2:select", onCl);
+
+    if (selected != "") {
+      $(`.${selector}`).val(selected).trigger("change");
+    }
+  }
+</script>
 <?= $this->endSection() ?>
