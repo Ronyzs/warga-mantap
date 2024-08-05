@@ -35,11 +35,11 @@ class Pengurus extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('Pengurus');
+        $this->forge->createTable('pengurus');
     }
 
     public function down()
     {
-        $this->forge->dropTable('Pengurus');
+        $this->forge->dropTable('pengurus');
     }
 }

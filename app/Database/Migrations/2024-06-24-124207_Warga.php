@@ -55,11 +55,11 @@ class Warga extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->createTable('Warga');
+        $this->forge->createTable('warga');
     }
 
     public function down()
     {
-        $this->forge->dropTable('Warga');
+        $this->forge->dropTable('warga');
     }
 }
