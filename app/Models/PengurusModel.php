@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class PengurusModel extends Model
 {
-    protected $table      = 'Pengurus';
+    protected $table      = 'pengurus';
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = true;
