@@ -62,7 +62,7 @@ class WargaModel extends Model
         // Join the `pengurus` table with the `warga` table
         $builder = $this->builder();
         $builder->select('warga.*, pengurus.id as pengurus_id, pengurus.nama as pengurus_nama, pengurus.rt as lingkup_rt');
-        $builder->join('pengurus', 'pengurus.id = warga.id', 'left'); // Adjust the join condition as needed
+        $builder->join('pengurus', 'pengurus.id = warga.timses', 'left'); // Adjust the join condition as needed
         $query = $builder->get();
         return $query->getResultArray();
     }
