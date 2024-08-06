@@ -80,7 +80,7 @@
               <th>RT</th>
               <th>RW</th>
               <th>Jenis Kelamin</th>
-              <th>Timses</th>
+              <th>Pengurus</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -95,7 +95,7 @@
                 <td><?= $w['rt'] ?></td>
                 <td><?= $w['rw'] ?></td>
                 <td><?= $w['jenis_kelamin'] ?></td>
-                <td><?= $w['timses'] ?></td>
+                <td><?= $w['pengurus_nama'] . ' - ' . $w['lingkup_rt'] ?></td>
                 <td>
                   <!-- <a href="/admin/warga/update/<?= $w['id'] ?>">
                                         <button class="btn btn-sm btn-warning">

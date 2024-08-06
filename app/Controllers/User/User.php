@@ -15,11 +15,9 @@ class User extends BaseController
   }
   public function index()
   {
-
-
     return view('user/warga', [
       'title'   => 'Data Warga',
-      'warga'   => $this->warga->findAll(),
+      'warga'   => $this->warga->getWargaWithPengurus(),
     ]);
   }
 }
